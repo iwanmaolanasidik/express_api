@@ -1,0 +1,19 @@
+const express = require('express');
+const app = express()
+const port = 3000
+
+//import body parser
+const bodyParser = require('body-parser')
+
+//parse application/x-www-form
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+const postsRouter = require('./routes/posts');
+app.use('/api/posts',postsRouter);
+
+app.listen(port, () => {
+    console.log(`app running at http://localhost:${port}`)
+})
